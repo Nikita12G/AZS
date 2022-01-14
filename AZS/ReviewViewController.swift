@@ -11,13 +11,6 @@ import SnapKit
 class ReviewViewController: UIViewController {
     
     
-    private let grayStripe: UIView = {
-        let view = UIView()
-        view.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
-        view.backgroundColor = .systemGreen
-        return view
-    }()
-    
     private let timeLabel : UILabel = {
         let label = UILabel()
         label.text = "\(day) \(month) \(hour) : \(minute)"
@@ -27,6 +20,24 @@ class ReviewViewController: UIViewController {
     private let purchaseAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "279,23"
+        return label
+    }()
+    
+    private let addressAZSLabel: UILabel = {
+        let label = UILabel()
+        label.text = "АЗС №14. Республика Татарстан, г.Казань, Ямашева проспект, 105а/1"
+        label.numberOfLines = 0
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    private let ratingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Оцените качество обслуживания на АЗС №14"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .black
         return label
     }()
     
@@ -63,7 +74,8 @@ class ReviewViewController: UIViewController {
         sendButtonConstrain()
         evaluateAnotherTimeButtonConstraint()
         selectRatingLabelConstraint()
-        grayStripeConstraint()
+        addressAZSConstraint()
+        ratingLabelConstrain()
     }
 
     private func timeLabelConstraint() {
@@ -108,10 +120,20 @@ class ReviewViewController: UIViewController {
         }
     }
     
-    private func grayStripeConstraint() {
-        view.addSubview(grayStripe)
-        grayStripe.snp.makeConstraints { make in
-            make.height.equalTo(timeLabel).inset(20)
+    private func addressAZSConstraint() {
+        view.addSubview(addressAZSLabel)
+        addressAZSLabel.snp.makeConstraints { make in
+            make.top.equalTo(timeLabel).inset(40)
+            make.left.right.equalToSuperview().inset(15)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func ratingLabelConstrain() {
+        view.addSubview(ratingLabel)
+        ratingLabel.snp.makeConstraints { make in
+            make.top.equalTo(addressAZSLabel).inset(220)
+            make.left.right.equalToSuperview().inset(50)
             make.centerX.equalToSuperview()
         }
     }
