@@ -7,9 +7,20 @@
 
 import UIKit
 import SnapKit
+import Cosmos
 
 class ReviewViewController: UIViewController {
     
+    
+    private let starsView: CosmosView = {
+        let view = CosmosView()
+        view.settings.starSize = 60
+        view.settings.starMargin = 8
+        view.settings.filledImage = UIImage(named: "Star1")?.withRenderingMode(.alwaysOriginal)
+        view.settings.emptyImage = UIImage(named: "Star2")?.withRenderingMode(.alwaysOriginal)
+        view.rating = 1
+        return view
+    }()
     
     private let timeLabel : UILabel = {
         let label = UILabel()
@@ -51,7 +62,7 @@ class ReviewViewController: UIViewController {
     private let sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Oтправить", for: .normal)
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = UIColor(red: 109/255, green: 175/255, blue: 125/255, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(sendButtonTaped), for: .touchUpInside)
@@ -76,6 +87,7 @@ class ReviewViewController: UIViewController {
         selectRatingLabelConstraint()
         addressAZSConstraint()
         ratingLabelConstrain()
+        starsViewConstraint()
     }
 
     private func timeLabelConstraint() {
@@ -97,7 +109,7 @@ class ReviewViewController: UIViewController {
     private func sendButtonConstrain() {
         view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(100) 
+            make.bottom.equalToSuperview().inset(80)
             make.height.equalTo(60)
             make.left.right.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
@@ -107,7 +119,7 @@ class ReviewViewController: UIViewController {
     private func evaluateAnotherTimeButtonConstraint() {
         view.addSubview(evaluateAnotherTimeButton)
         evaluateAnotherTimeButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
         }
     }
@@ -115,7 +127,7 @@ class ReviewViewController: UIViewController {
     private func selectRatingLabelConstraint() {
         view.addSubview(selectRatingLabel)
         selectRatingLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(sendButton).inset(120)
+            make.bottom.equalTo(sendButton).inset(200)
             make.centerX.equalToSuperview()
         }
     }
@@ -132,8 +144,16 @@ class ReviewViewController: UIViewController {
     private func ratingLabelConstrain() {
         view.addSubview(ratingLabel)
         ratingLabel.snp.makeConstraints { make in
-            make.top.equalTo(addressAZSLabel).inset(220)
+            make.top.equalTo(addressAZSLabel).inset(180)
             make.left.right.equalToSuperview().inset(50)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func starsViewConstraint() {
+        view.addSubview(starsView)
+        starsView.snp.makeConstraints { make in
+            make.bottom.equalTo(selectRatingLabel).inset(50)
             make.centerX.equalToSuperview()
         }
     }
@@ -143,6 +163,6 @@ class ReviewViewController: UIViewController {
     }
     
     @objc func sendButtonTaped() {
-        print ("sendButtonTaped")
+        print("Selected \(starsView.rating) stars")
     }
 }
