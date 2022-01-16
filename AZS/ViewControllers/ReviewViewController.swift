@@ -11,7 +11,7 @@ import Cosmos
 
 class ReviewViewController: UIViewController {
     
-    
+//     Stars view
     private let starsView: CosmosView = {
         let view = CosmosView()
         view.settings.starSize = 60
@@ -22,18 +22,21 @@ class ReviewViewController: UIViewController {
         return view
     }()
     
+//    Time label
     private let timeLabel : UILabel = {
         let label = UILabel()
-        label.text = "\(day) \(month) \(hour) : \(minute)"
+        label.text = stringDate
         return label
     }()
     
+//    Purchase amount label
     private let purchaseAmountLabel: UILabel = {
         let label = UILabel()
         label.text = "279,23"
         return label
     }()
     
+//    Address AZS label
     private let addressAZSLabel: UILabel = {
         let label = UILabel()
         label.text = "АЗС №14. Республика Татарстан, г.Казань, Ямашева проспект, 105а/1"
@@ -42,6 +45,7 @@ class ReviewViewController: UIViewController {
         return label
     }()
     
+//    Rating label
     private let ratingLabel: UILabel = {
         let label = UILabel()
         label.text = "Оцените качество обслуживания на АЗС №14"
@@ -52,6 +56,7 @@ class ReviewViewController: UIViewController {
         return label
     }()
     
+//    Select rating label
     private let selectRatingLabel: UILabel = {
         let label = UILabel()
         label.text = "Выберите оценку"
@@ -59,6 +64,7 @@ class ReviewViewController: UIViewController {
         return label
     }()
     
+//    Send button
     private let sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Oтправить", for: .normal)
@@ -69,6 +75,7 @@ class ReviewViewController: UIViewController {
         return button
     }()
     
+//    Evaluate another time button
     private let evaluateAnotherTimeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Oценить в другой раз", for: .normal)
@@ -89,6 +96,8 @@ class ReviewViewController: UIViewController {
         ratingLabelConstrain()
         starsViewConstraint()
     }
+    
+//    Private func
 
     private func timeLabelConstraint() {
         view.addSubview(timeLabel)
@@ -127,7 +136,7 @@ class ReviewViewController: UIViewController {
     private func selectRatingLabelConstraint() {
         view.addSubview(selectRatingLabel)
         selectRatingLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(sendButton).inset(200)
+            make.bottom.equalTo(sendButton).inset(150)
             make.centerX.equalToSuperview()
         }
     }
@@ -144,7 +153,7 @@ class ReviewViewController: UIViewController {
     private func ratingLabelConstrain() {
         view.addSubview(ratingLabel)
         ratingLabel.snp.makeConstraints { make in
-            make.top.equalTo(addressAZSLabel).inset(180)
+            make.top.equalTo(addressAZSLabel).inset(100)
             make.left.right.equalToSuperview().inset(50)
             make.centerX.equalToSuperview()
         }
@@ -153,10 +162,12 @@ class ReviewViewController: UIViewController {
     private func starsViewConstraint() {
         view.addSubview(starsView)
         starsView.snp.makeConstraints { make in
-            make.bottom.equalTo(selectRatingLabel).inset(50)
+            make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
         }
     }
+    
+//  @objc func
     
     @objc func evaluateAnotherTimeButtonTaped() {
         dismiss(animated: true, completion: nil)

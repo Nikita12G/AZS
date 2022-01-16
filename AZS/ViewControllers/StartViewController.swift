@@ -28,6 +28,7 @@ class StartViewController: UIViewController {
             blue: 62/255,
             alpha: 1
         )
+        
 //      startButton
         view.addSubview(startButton)
         startButton.snp.makeConstraints { make in

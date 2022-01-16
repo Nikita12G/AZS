@@ -7,26 +7,11 @@
 
 import Foundation
 
-let date = Date()
-let calendar = Calendar.current
+let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "ru_RU")
+    dateFormatter.dateFormat = "dd MMMM h:mm"
+    return dateFormatter
+}()
 
-var day: Int {
-    get {
-        return calendar.component(.day, from: date)
-    }
-}
-var minute: Int {
-    get {
-        return calendar.component(.minute, from: date)
-    }
-}
-var hour: Int {
-    get {
-        return calendar.component(.hour, from: date)
-    }
-}
-var month: Int {
-    get {
-        return calendar.component(.month, from: date)
-    }
-}
+let stringDate = dateFormatter.string(from: Date())
