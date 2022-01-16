@@ -11,11 +11,13 @@ import Cosmos
 
 class ReviewViewController: UIViewController {
     
+    private let screenSize = UIScreen.main.bounds
+    
 //     Stars view
     private let starsView: CosmosView = {
         let view = CosmosView()
         view.settings.starSize = 60
-        view.settings.starMargin = 8
+        view.settings.starMargin = 7
         view.settings.filledImage = UIImage(named: "Star1")?.withRenderingMode(.alwaysOriginal)
         view.settings.emptyImage = UIImage(named: "Star2")?.withRenderingMode(.alwaysOriginal)
         view.rating = 1
@@ -136,8 +138,9 @@ class ReviewViewController: UIViewController {
     private func selectRatingLabelConstraint() {
         view.addSubview(selectRatingLabel)
         selectRatingLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(sendButton).inset(150)
+            make.center.equalTo(view).offset(70)
             make.centerX.equalToSuperview()
+
         }
     }
     
@@ -153,8 +156,8 @@ class ReviewViewController: UIViewController {
     private func ratingLabelConstrain() {
         view.addSubview(ratingLabel)
         ratingLabel.snp.makeConstraints { make in
-            make.top.equalTo(addressAZSLabel).inset(100)
-            make.left.right.equalToSuperview().inset(50)
+            make.center.equalTo(view).offset(-(screenSize.height / 5))
+            make.left.right.equalToSuperview().inset(60)
             make.centerX.equalToSuperview()
         }
     }

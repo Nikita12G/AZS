@@ -12,6 +12,7 @@ class StartViewController: UIViewController {
     
     private let reviewViewController = ReviewViewController()
     
+//    Start button
     private let startButton: UIButton = {
         let button = UIButton()
         button.setTitle("Start", for: .normal)
@@ -28,8 +29,10 @@ class StartViewController: UIViewController {
             blue: 62/255,
             alpha: 1
         )
-        
-//      startButton
+        startButtonConstraint() 
+    }
+    
+    func startButtonConstraint() {
         view.addSubview(startButton)
         startButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
