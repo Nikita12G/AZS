@@ -120,7 +120,7 @@ class ReviewViewController: UIViewController {
     private func sendButtonConstrain() {
         view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(80)
+            make.bottom.equalToSuperview().inset(screenSize.height / 11)
             make.height.equalTo(60)
             make.left.right.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
@@ -130,7 +130,7 @@ class ReviewViewController: UIViewController {
     private func evaluateAnotherTimeButtonConstraint() {
         view.addSubview(evaluateAnotherTimeButton)
         evaluateAnotherTimeButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(screenSize.height / 36)
             make.centerX.equalToSuperview()
         }
     }
@@ -174,6 +174,7 @@ class ReviewViewController: UIViewController {
     
     @objc func evaluateAnotherTimeButtonTaped() {
         dismiss(animated: true, completion: nil)
+        print("No selected")
     }
     
     @objc func sendButtonTaped() {
