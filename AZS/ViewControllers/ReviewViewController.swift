@@ -178,6 +178,7 @@ class ReviewViewController: UIViewController {
     }
     
     @objc func sendButtonTaped() {
+        dismiss(animated: true, completion: nil)
         print("Selected \(starsView.rating) stars")
     }
 }
