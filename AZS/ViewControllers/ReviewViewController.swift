@@ -16,7 +16,6 @@ class ReviewViewController: UIViewController {
 //     Stars view
     private let starsView: CosmosView = {
         let view = CosmosView()
-        view.settings.starSize = 60
         view.settings.starMargin = 7
         view.settings.filledImage = UIImage(named: "Star1")?.withRenderingMode(.alwaysOriginal)
         view.settings.emptyImage = UIImage(named: "Star2")?.withRenderingMode(.alwaysOriginal)
@@ -163,6 +162,7 @@ class ReviewViewController: UIViewController {
     }
     
     private func starsViewConstraint() {
+        starsView.settings.starSize = screenSize.width / 7
         view.addSubview(starsView)
         starsView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
